@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const mock = ["category 1", "category 2", "category 3"];
 
-export const Sidebar = () => {
+export const Sidebar = (props) => {
   const [categories, setCategories] = useState(mock);
 
   const getData = async () => {
@@ -10,7 +10,11 @@ export const Sidebar = () => {
       "https://fakestoreapi.com/products/categories/"
     );
     const data = await response.json();
-    setCategories(data);
+    // data.push("Everything");
+    // data.reverse();
+    // data.unshift("Everything");
+    const updated = ["everything"].concat(data);
+    setCategories(updated);
   };
 
   /**
@@ -24,13 +28,24 @@ export const Sidebar = () => {
     getData();
   }, []);
 
+  const clicked = (event, category) => {
+    event.preventDefault();
+    // console.log(category);
+    props.catSelection(category);
+  };
+
   return (
     <aside>
       <h2>Categories</h2>
       <ul>
+        {/* <li>
+          <a href="/everything">Everything</a>
+        </li> */}
         {categories.map((item, index) => (
           <li key={index}>
-            <a href={item}>{item}</a>
+            <a href={item} onClick={(event) => clicked(event, item)}>
+              {item}
+            </a>
           </li>
         ))}
       </ul>
