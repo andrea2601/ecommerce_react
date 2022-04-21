@@ -4,6 +4,7 @@ const mock = ["category 1", "category 2", "category 3"];
 
 export const Sidebar = (props) => {
   const [categories, setCategories] = useState(mock);
+  const [isActive, setActive] = useState(1); 
 
   const getData = async () => {
     const response = await fetch(
@@ -19,11 +20,14 @@ export const Sidebar = (props) => {
     getData();
   }, []);
 
-  const clicked = (event, category) => {
+  const clicked = (event, category, index) => {
     event.preventDefault();
-    // console.log(category);
-    
     props.catSelection(category);
+    
+    setActive(index);
+    console.log("isactive: ",isActive);
+    console.log("event: ",event);
+    event.target.className="active";
   };
 
   return (
@@ -35,7 +39,10 @@ export const Sidebar = (props) => {
         </li> */}
         {categories.map((item, index) => (
           <li key={index}>
-            <a href={item} onClick={(event) => clicked(event, item)}>
+            <a
+              href={item}
+              onClick={(event) => clicked(event, item, index)}
+              className={isActive === index ? "active" : "two"}>
               {item}
             </a>
           </li>

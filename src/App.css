@@ -38,9 +38,21 @@ ul.grid {
   list-style: none;
 }
 
+aside ul li{
+  padding: 5px 0;
+}
+
 aside ul li a{
   text-decoration: none;
   color: white;
+}
+
+aside ul li a.active{
+  font-weight: 700;
+}
+
+aside ul li a:active{
+  color: gray;
 }
 
 ul.grid {
