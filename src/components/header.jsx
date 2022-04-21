@@ -1,10 +1,24 @@
 import logo from './logo.png';
-export const Header = () => {
+import { useState } from "react";
+
+export const Header = (props) => {
+  const [search, setSearch] = useState("");
+
+  const changing = (event) => {
+    setSearch(event.target.value);
+    props.filterChoise(event.target.value);
+  };
+
   return (
     <header>
-      <img src={logo} alt="React-ecommerce" />
+      <img src={logo} alt="React ecommerce" />
       <form>
-        <input type="text" placeholder="Search..." />
+        <input
+          value={search}
+          onChange={changing}
+          type="text"
+          placeholder="Search..."
+        />
       </form>
     </header>
   );

@@ -20,7 +20,7 @@ const productList = [{
   image: "",
 },];
 
-export const List = ({ category }) => {
+export const List = ({ category, filter }) => {
   const [source, setSource] = useState([]);
   const [products, setProducts] = useState(productList);
   const [isLoading, setLoading] = useState(true);
@@ -51,12 +51,27 @@ export const List = ({ category }) => {
     // eslint-disable-next-line
   }, [category]);
 
+  useEffect(() => {
+    const filtered = source.filter((product) => { 
+      if (filter === "") {
+        return product;
+      } else {
+      console.log( product.title.includes(filter))
+      return product.title.toLowerCase().includes(filter.toLowerCase());
+    }
+  });
+    setProducts(filtered);
+    console.log("il filtro è: ", filter, filtered);
+
+    // eslint-disable-next-line
+  }, [filter]);
+
   return (
     <section>
       <ul className="grid">
         {products.map((item) => (
           <li key={item.id} className={isLoading ? "loading" : ""}>
-            <Product name={item.title} price={item.price} image={item.image} />
+            <Product title={item.title} price={item.price} img={item.image} />
           </li>
         ))}
       </ul>

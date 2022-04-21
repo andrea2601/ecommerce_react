@@ -10,20 +10,11 @@ export const Sidebar = (props) => {
       "https://fakestoreapi.com/products/categories/"
     );
     const data = await response.json();
-    // data.push("Everything");
-    // data.reverse();
-    // data.unshift("Everything");
+
     const updated = ["everything"].concat(data);
     setCategories(updated);
   };
 
-  /**
-   * useEffect(callback, []) === callback da eseguire appena il
-   * componente è aggiunto alla pagina (tipo DOMContentLoaded ma
-   * solo per il componente)
-   *
-   * useEffect è molto simile a un addEventListener
-   */
   useEffect(() => {
     getData();
   }, []);
@@ -31,6 +22,7 @@ export const Sidebar = (props) => {
   const clicked = (event, category) => {
     event.preventDefault();
     // console.log(category);
+    
     props.catSelection(category);
   };
 
