@@ -8,6 +8,7 @@ import "./App.css";
 function App() {
   const [category, setCategory] = useState("");
   const [filter, setFilter] = useState("");
+  const [cart, setCart] = useState([]);
 
   const catSelection = (value) => {
     console.log(value);
@@ -24,7 +25,7 @@ function App() {
       <Header filterChoise={filterChoise}/>
       <div className="flex">
         <Sidebar catSelection={catSelection} />
-        <List category={category} filter={filter}/>
+        <List category={category} filter={filter} setCart={setCart}/>
       </div>
     </main>
   );

@@ -70,9 +70,15 @@ article img{
 
 section ul li{
   box-sizing: border-box;
+  background: white;
   border-radius: 10px;
   box-shadow: 5px 5px 14px -4px #000000;
   padding: 10px;
+  transition: all 0.3s ease-out;
+}
+section ul li:hover{
+transform: scale(1.02);
+z-index: 100;
 }
 section{
   padding: 10px;
