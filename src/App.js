@@ -23,9 +23,10 @@ function App() {
   return (
     <main>
       <Header filterChoise={filterChoise}/>
-      <div className="flex">
         <Sidebar catSelection={catSelection} />
-        <List category={category} filter={filter} setCart={setCart}/>
+      <div className="flex">
+        <div className="bg"></div>
+        <List category={category} filter={filter}/>
       </div>
     </main>
   );
