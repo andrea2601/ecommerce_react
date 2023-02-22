@@ -6,15 +6,21 @@ import reportWebVitals from './reportWebVitals';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { Provider } from "react-redux";
 import {reducer} from "./store/reducer";
+import createSagaMiddleware from "redux-saga";
+import mySaga from "./store/sagas";
 
+const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
   cart: reducer
 });
 
 export const store = configureStore({
-  reducer: rootReducer
+  reducer: rootReducer,
+  middleware: [sagaMiddleware],
 });
+
+sagaMiddleware.run(mySaga);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,7 +29,4 @@ root.render(
   </Provider>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

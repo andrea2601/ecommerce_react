@@ -8,7 +8,6 @@ export const Product = ({ id, img, title, price, setCart }) => {
   const cart = useSelector((state) => state.cart);
 
   useEffect(() => {
-    console.log("cartt", cart.cart);
     if (cart.cart?.find((el) => el === id)) {
       setIsOnCart(true);
     }else{
@@ -17,12 +16,10 @@ export const Product = ({ id, img, title, price, setCart }) => {
   }, [cart]);
 
   const addCart = (id) => {
-    console.log(id);
     dispatch(Actions.addToCart(id));
   };
 
   const removeCart = (id) => {
-    console.log(id);
     dispatch(Actions.removeToCart(id));
   };
   const [isOnCart, setIsOnCart] = useState(false);
