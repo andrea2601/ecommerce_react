@@ -83,7 +83,8 @@
 .bg {
   background: rgb(0, 0, 0);
   background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, #cd9574 100%);
-  width: 1500px;
+  width: 100vw;
+  max-width: 1500px;
   height: 822px;
   position: absolute;
   /* top: 0; */
